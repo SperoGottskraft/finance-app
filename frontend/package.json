@@ -16,6 +16,9 @@
     "lucide-react": "^0.577.0",
     "react-plaid-link": "^3.6.0"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.0",
     "@tailwindcss/vite": "^4.0.0",
