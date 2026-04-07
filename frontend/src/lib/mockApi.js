@@ -106,35 +106,66 @@ function buildTransactions() {
   const txns = [];
   let id = 1;
 
-  for (const [yr, mo] of [[py, pm], [cy, cm]]) {
-    txns.push(makeTxn(id++, 1, 1,  "Direct Deposit — Employer",   -3850.00, yr, mo, 1,  "Employer Payroll"));
-    txns.push(makeTxn(id++, 1, 1,  "Direct Deposit — Employer",   -3850.00, yr, mo, 15, "Employer Payroll"));
-    txns.push(makeTxn(id++, 1, 5,  "Rent Payment",                 1650.00, yr, mo, 1,  "Property Mgmt Co"));
-    txns.push(makeTxn(id++, 1, 6,  "City Power & Water",             95.42, yr, mo, 5,  "City Utilities"));
-    txns.push(makeTxn(id++, 1, 7,  "AT&T Internet + Phone",         119.99, yr, mo, 6,  "AT&T"));
-    txns.push(makeTxn(id++, 3, 8,  "Whole Foods Market",            112.38, yr, mo, 3,  "Whole Foods"));
-    txns.push(makeTxn(id++, 3, 8,  "Trader Joe's",                   68.91, yr, mo, 11, "Trader Joe's"));
-    txns.push(makeTxn(id++, 3, 8,  "Kroger",                         84.55, yr, mo, 21, "Kroger"));
-    txns.push(makeTxn(id++, 3, 9,  "Chipotle Mexican Grill",         14.75, yr, mo, 7,  "Chipotle"));
-    txns.push(makeTxn(id++, 3, 9,  "Local Italian Restaurant",       62.40, yr, mo, 13, "Osteria Marco"));
-    txns.push(makeTxn(id++, 3, 9,  "Shake Shack",                    23.18, yr, mo, 19, "Shake Shack"));
-    txns.push(makeTxn(id++, 3, 10, "Starbucks",                       6.85, yr, mo, 4,  "Starbucks"));
-    txns.push(makeTxn(id++, 3, 10, "Starbucks",                       7.40, yr, mo, 16, "Starbucks"));
-    txns.push(makeTxn(id++, 1, 11, "Shell Gas Station",              54.20, yr, mo, 8,  "Shell"));
-    txns.push(makeTxn(id++, 1, 11, "BP Gas Station",                 49.85, yr, mo, 22, "BP"));
-    txns.push(makeTxn(id++, 3, 20, "Netflix",                        17.99, yr, mo, 2,  "Netflix"));
-    txns.push(makeTxn(id++, 3, 20, "Spotify Premium",                11.99, yr, mo, 2,  "Spotify"));
-    txns.push(makeTxn(id++, 3, 22, "Amazon Prime",                   14.99, yr, mo, 3,  "Amazon"));
-    txns.push(makeTxn(id++, 3, 14, "Doctor Copay",                   30.00, yr, mo, 10, "Primary Care Clinic"));
-    txns.push(makeTxn(id++, 3, 15, "CVS Pharmacy",                   18.47, yr, mo, 12, "CVS"));
-    txns.push(makeTxn(id++, 3, 19, "Amazon.com",                     43.99, yr, mo, 9,  "Amazon"));
-    txns.push(makeTxn(id++, 3, 17, "Target",                         67.22, yr, mo, 17, "Target"));
-    txns.push(makeTxn(id++, 1, 16, "Planet Fitness Membership",      24.99, yr, mo, 1,  "Planet Fitness"));
-    txns.push(makeTxn(id++, 1, 26, "Transfer to Savings",           500.00, yr, mo, 15, "Chase Transfer"));
-    txns.push(makeTxn(id++, 2, 26, "Transfer from Checking",       -500.00, yr, mo, 15, "Chase Transfer"));
-    txns.push(makeTxn(id++, 1, 26, "Chase Sapphire Payment",        900.00, yr, mo, 28, "Chase"));
-    txns.push(makeTxn(id++, 3, 26, "Payment — Thank You",          -900.00, yr, mo, 28, "Chase"));
-  }
+  // ── Last month — higher dining + a weekend trip, lower groceries ─────────
+  const [yr0, mo0] = [py, pm];
+  txns.push(makeTxn(id++, 1, 1,  "Direct Deposit — Employer",   -3850.00, yr0, mo0, 1,  "Employer Payroll"));
+  txns.push(makeTxn(id++, 1, 1,  "Direct Deposit — Employer",   -3850.00, yr0, mo0, 15, "Employer Payroll"));
+  txns.push(makeTxn(id++, 1, 5,  "Rent Payment",                 1650.00, yr0, mo0, 1,  "Property Mgmt Co"));
+  txns.push(makeTxn(id++, 1, 6,  "City Power & Water",            108.17, yr0, mo0, 5,  "City Utilities"));  // higher utility bill
+  txns.push(makeTxn(id++, 1, 7,  "AT&T Internet + Phone",         119.99, yr0, mo0, 6,  "AT&T"));
+  txns.push(makeTxn(id++, 3, 8,  "Whole Foods Market",             97.44, yr0, mo0, 4,  "Whole Foods"));
+  txns.push(makeTxn(id++, 3, 8,  "Trader Joe's",                   61.20, yr0, mo0, 12, "Trader Joe's"));
+  // no third grocery run last month
+  txns.push(makeTxn(id++, 3, 9,  "Chipotle Mexican Grill",         16.45, yr0, mo0, 3,  "Chipotle"));
+  txns.push(makeTxn(id++, 3, 9,  "Local Italian Restaurant",       74.80, yr0, mo0, 10, "Osteria Marco"));  // bigger dinner
+  txns.push(makeTxn(id++, 3, 9,  "Shake Shack",                    19.62, yr0, mo0, 17, "Shake Shack"));
+  txns.push(makeTxn(id++, 3, 9,  "The Capital Grille",            143.50, yr0, mo0, 22, "The Capital Grille"));  // special dinner out
+  txns.push(makeTxn(id++, 3, 10, "Starbucks",                       7.15, yr0, mo0, 5,  "Starbucks"));
+  txns.push(makeTxn(id++, 3, 10, "Starbucks",                       6.90, yr0, mo0, 18, "Starbucks"));
+  txns.push(makeTxn(id++, 3, 10, "Dutch Bros Coffee",               8.25, yr0, mo0, 25, "Dutch Bros"));  // extra coffee stop
+  txns.push(makeTxn(id++, 1, 11, "Shell Gas Station",              61.40, yr0, mo0, 7,  "Shell"));
+  txns.push(makeTxn(id++, 1, 11, "Chevron",                         55.30, yr0, mo0, 20, "Chevron"));
+  txns.push(makeTxn(id++, 3, 20, "Netflix",                        17.99, yr0, mo0, 2,  "Netflix"));
+  txns.push(makeTxn(id++, 3, 20, "Spotify Premium",                11.99, yr0, mo0, 2,  "Spotify"));
+  txns.push(makeTxn(id++, 3, 22, "Amazon Prime",                   14.99, yr0, mo0, 3,  "Amazon"));
+  txns.push(makeTxn(id++, 3, 19, "Amazon.com",                     67.83, yr0, mo0, 8,  "Amazon"));  // larger order
+  txns.push(makeTxn(id++, 3, 17, "Macy's",                        112.47, yr0, mo0, 14, "Macy's"));  // clothing splurge
+  txns.push(makeTxn(id++, 1, 16, "Planet Fitness Membership",      24.99, yr0, mo0, 1,  "Planet Fitness"));
+  txns.push(makeTxn(id++, 1, 26, "Transfer to Savings",           500.00, yr0, mo0, 15, "Chase Transfer"));
+  txns.push(makeTxn(id++, 2, 26, "Transfer from Checking",       -500.00, yr0, mo0, 15, "Chase Transfer"));
+  txns.push(makeTxn(id++, 1, 26, "Chase Sapphire Payment",       1100.00, yr0, mo0, 28, "Chase"));  // higher CC payment
+  txns.push(makeTxn(id++, 3, 26, "Payment — Thank You",         -1100.00, yr0, mo0, 28, "Chase"));
+
+  // ── Current month — tighter month, medical expense, smaller CC payment ───
+  const [yr1, mo1] = [cy, cm];
+  txns.push(makeTxn(id++, 1, 1,  "Direct Deposit — Employer",   -3850.00, yr1, mo1, 1,  "Employer Payroll"));
+  txns.push(makeTxn(id++, 1, 1,  "Direct Deposit — Employer",   -3850.00, yr1, mo1, 15, "Employer Payroll"));
+  txns.push(makeTxn(id++, 1, 5,  "Rent Payment",                 1650.00, yr1, mo1, 1,  "Property Mgmt Co"));
+  txns.push(makeTxn(id++, 1, 6,  "City Power & Water",             88.94, yr1, mo1, 5,  "City Utilities"));  // lower bill
+  txns.push(makeTxn(id++, 1, 7,  "AT&T Internet + Phone",         119.99, yr1, mo1, 6,  "AT&T"));
+  txns.push(makeTxn(id++, 3, 8,  "Whole Foods Market",            112.38, yr1, mo1, 3,  "Whole Foods"));
+  txns.push(makeTxn(id++, 3, 8,  "Trader Joe's",                   68.91, yr1, mo1, 11, "Trader Joe's"));
+  txns.push(makeTxn(id++, 3, 8,  "Kroger",                         84.55, yr1, mo1, 21, "Kroger"));
+  txns.push(makeTxn(id++, 3, 9,  "Chipotle Mexican Grill",         14.75, yr1, mo1, 7,  "Chipotle"));
+  txns.push(makeTxn(id++, 3, 9,  "Local Italian Restaurant",       62.40, yr1, mo1, 13, "Osteria Marco"));
+  txns.push(makeTxn(id++, 3, 9,  "Shake Shack",                    23.18, yr1, mo1, 19, "Shake Shack"));
+  txns.push(makeTxn(id++, 3, 10, "Starbucks",                       6.85, yr1, mo1, 4,  "Starbucks"));
+  txns.push(makeTxn(id++, 3, 10, "Starbucks",                       7.40, yr1, mo1, 16, "Starbucks"));
+  txns.push(makeTxn(id++, 1, 11, "Shell Gas Station",              54.20, yr1, mo1, 8,  "Shell"));
+  txns.push(makeTxn(id++, 1, 11, "BP Gas Station",                 49.85, yr1, mo1, 22, "BP"));
+  txns.push(makeTxn(id++, 3, 20, "Netflix",                        17.99, yr1, mo1, 2,  "Netflix"));
+  txns.push(makeTxn(id++, 3, 20, "Spotify Premium",                11.99, yr1, mo1, 2,  "Spotify"));
+  txns.push(makeTxn(id++, 3, 22, "Amazon Prime",                   14.99, yr1, mo1, 3,  "Amazon"));
+  txns.push(makeTxn(id++, 3, 14, "Doctor Copay",                   30.00, yr1, mo1, 10, "Primary Care Clinic"));
+  txns.push(makeTxn(id++, 3, 14, "Urgent Care Visit",              85.00, yr1, mo1, 16, "CityMD"));  // unexpected medical
+  txns.push(makeTxn(id++, 3, 15, "CVS Pharmacy",                   34.82, yr1, mo1, 17, "CVS"));    // prescription
+  txns.push(makeTxn(id++, 3, 19, "Amazon.com",                     43.99, yr1, mo1, 9,  "Amazon"));
+  txns.push(makeTxn(id++, 3, 17, "Target",                         67.22, yr1, mo1, 17, "Target"));
+  txns.push(makeTxn(id++, 1, 16, "Planet Fitness Membership",      24.99, yr1, mo1, 1,  "Planet Fitness"));
+  txns.push(makeTxn(id++, 1, 26, "Transfer to Savings",           500.00, yr1, mo1, 15, "Chase Transfer"));
+  txns.push(makeTxn(id++, 2, 26, "Transfer from Checking",       -500.00, yr1, mo1, 15, "Chase Transfer"));
+  txns.push(makeTxn(id++, 1, 26, "Chase Sapphire Payment",        900.00, yr1, mo1, 28, "Chase"));
+  txns.push(makeTxn(id++, 3, 26, "Payment — Thank You",          -900.00, yr1, mo1, 28, "Chase"));
 
   return txns.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
