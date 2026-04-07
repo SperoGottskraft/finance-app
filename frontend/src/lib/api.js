@@ -1,3 +1,5 @@
+import { mockApi } from "./mockApi.js";
+
 const BASE = import.meta.env.VITE_API_URL ?? "";
 
 async function request(path, options = {}) {
@@ -33,7 +35,7 @@ const put    = (path, body) => request(path, { method: "PUT",  body: JSON.string
 const patch  = (path, body) => request(path, { method: "PATCH", body: JSON.stringify(body) });
 const del    = (path)       => request(path, { method: "DELETE" });
 
-export const api = {
+const realApi = {
   // Accounts
   accounts: {
     list:   ()     => get("/api/accounts"),
@@ -148,3 +150,6 @@ export const api = {
     deleteHolding: (accountId, holdingId)        => del(`/api/investments/${accountId}/holdings/${holdingId}`),
   },
 };
+
+// Use mock data when no backend URL is configured (static demo deployment)
+export const api = BASE ? realApi : mockApi;
