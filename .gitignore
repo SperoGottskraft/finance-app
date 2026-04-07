@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Database & uploads
+backend/finance.db
+backend/uploads/
+backend/.demo_seed_month
+backend/.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local data files (real financial data — never commit)
+*.csv
+*.xlsx
+*.zip
